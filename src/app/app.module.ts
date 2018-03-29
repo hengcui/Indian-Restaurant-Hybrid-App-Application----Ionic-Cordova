@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { MenuPage } from '../pages/menu/menu';
-
+import { DishdetailPage } from '../pages/dishdetail/dishdetail';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -18,6 +18,7 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
 import { baseURL } from '../shared/baseurl';
 import { LeaderProvider } from '../providers/leader/leader';
 import { PromotionProvider } from '../providers/promotion/promotion';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,6 +26,7 @@ import { PromotionProvider } from '../providers/promotion/promotion';
     AboutPage,
     ContactPage,
     MenuPage,
+    DishdetailPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { PromotionProvider } from '../providers/promotion/promotion';
     HomePage,
     AboutPage,
     ContactPage,
-    MenuPage
+    MenuPage,
+    DishdetailPage
   ],
   providers: [
     StatusBar,
@@ -48,7 +51,6 @@ import { PromotionProvider } from '../providers/promotion/promotion';
     ProcessHttpmsgProvider,
     LeaderProvider,
     PromotionProvider,
-
   ]
 })
 export class AppModule {}

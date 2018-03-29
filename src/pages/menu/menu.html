@@ -16,6 +16,13 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="card-background-image">
+  <div *ngIf="dishes">
+    <ion-card *ngFor="let dish of dishes" (click)="dishSelected($event, dish)">
+      <img src="{{BaseURL + dish.image}}" alt="dish.name">
+      <div class="card-title">{{dish.name}}</div>
+      <div class="card-subtitle">{{dish.description}}</div>
+    </ion-card>
+  </div>
 
 </ion-content>
