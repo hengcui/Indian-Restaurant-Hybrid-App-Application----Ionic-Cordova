@@ -37,8 +37,11 @@ export class DishdetailPage {
   }
 
   addToFavorites(){
-    console.log(this.dish.id);
     this.favorite = this.favoriteService.addFavorite(this.dish.id);
+  }
+
+  removeFromFavorites(){
+    this.favorite = this.favoriteService.removeFavorite(this.dish.id);
   }
 
 }
