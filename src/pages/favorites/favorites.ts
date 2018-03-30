@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, ItemSliding } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ItemSliding, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { Dish } from '../../shared/dish';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
 
@@ -21,6 +21,9 @@ export class FavoritesPage implements OnInit{
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private favoriteService : FavoriteProvider,
+              private toastCtrl : ToastController,
+              private loadingCtrl : LoadingController,
+              private alertCtrl : AlertController,
               @Inject('BaseURL') private BaseURL) {
   }
 
@@ -30,11 +33,37 @@ export class FavoritesPage implements OnInit{
   }
 
   deleteFavorite(id : number, item: ItemSliding){
-    this.favoriteService.deleteFavorites(id).subscribe(fav => this.favorites = fav,
-                                                       error => this.errMess = error);
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Do you want to delete Dish ' + id,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            let loading = this.loadingCtrl.create({
+              content: 'Deleting'
+            });
+            let toast = this.toastCtrl.create({
+              message: 'Dish ' + id + ' deleted successfully',
+              duration: 2000
+            });
+
+            loading.present();
+            
+            this.favoriteService.deleteFavorites(id).subscribe(fav => {this.favorites = fav; loading.dismiss(); toast.present()},
+                                                               error => {this.errMess = error; loading.dismiss()});
+          }
+        }
+      ]
+    });
+    alert.present();
     item.close();
   }
-  
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritesPage');
   }
