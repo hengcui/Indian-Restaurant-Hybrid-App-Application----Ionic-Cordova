@@ -24,7 +24,7 @@ export class FavoritesPage implements OnInit{
               private toastCtrl : ToastController,
               private loadingCtrl : LoadingController,
               private alertCtrl : AlertController,
-              @Inject('BaseURL') private BaseURL) {
+              @Inject('BaseURL') public BaseURL) {
   }
 
   ngOnInit(){

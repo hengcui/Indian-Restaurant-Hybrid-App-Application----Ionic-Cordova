@@ -25,7 +25,7 @@ export class MenuPage implements OnInit{
               private dishService : DishProvider,
               private favoriteService : FavoriteProvider,
               private toastCtrl : ToastController,
-              @Inject('BaseURL') private BaseURL) {
+              @Inject('BaseURL') public BaseURL) {
   }
 
   ngOnInit(){

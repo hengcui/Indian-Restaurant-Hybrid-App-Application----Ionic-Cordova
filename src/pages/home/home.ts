@@ -23,7 +23,7 @@ export class HomePage implements OnInit{
               private dishService : DishProvider,
               private leaderService : LeaderProvider,
               private promotionService : PromotionProvider,
-              @Inject('BaseURL') private BaseURL) {
+              @Inject('BaseURL') public BaseURL) {
 
   }
   

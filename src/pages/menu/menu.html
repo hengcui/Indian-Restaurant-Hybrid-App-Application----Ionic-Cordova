@@ -23,7 +23,7 @@
         <div>
           <ion-card  (click)="dishSelected($event, dish)" (pan)="addToFavorites(dish)">
             <img src="{{BaseURL + dish.image}}" alt="dish.name">
-            <div class="card-title">{{dish.name}}</div>
+            <div class="card-title">{{dish.name | uppercase}}</div>
             <div class="card-subtitle">{{dish.description}}</div>
           </ion-card>
         </div>

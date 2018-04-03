@@ -25,7 +25,7 @@ export class DishdetailPage {
               private toastCtrl : ToastController,
               private actionSheetCtrl : ActionSheetController,
               private modalCtrl : ModalController,
-              @Inject('BaseURL') private BaseURL) {
+              @Inject('BaseURL') public BaseURL) {
                 this.dish = this.navParams.get('dish');
                 this.favorite = this.favoriteService.isFavorite(this.dish.id);
                 this.numComments = this.dish.comments.length;

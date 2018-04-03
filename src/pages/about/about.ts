@@ -20,7 +20,7 @@ export class AboutPage implements OnInit{
   errMess : string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private leaderService : LeaderProvider,
-              @Inject('BaseURL') private BaseURL) {
+              @Inject('BaseURL') public BaseURL) {
   }
 
   ionViewDidLoad() {

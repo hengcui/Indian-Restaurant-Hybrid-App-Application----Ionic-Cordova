@@ -15,7 +15,7 @@
           <img src="{{BaseURL + dish.image}}" alt="dish.name">
           <ion-card-content>
             <ion-card-title>
-              {{dish.name || uppercase}}
+              {{dish.name | uppercase}}
             </ion-card-title>
             <p>
               {{dish.description}}
@@ -39,7 +39,7 @@
           <img src="{{BaseURL + promotion.image}}" alt="promotion.name">
           <ion-card-content>
             <ion-card-title>
-              {{promotion.name || uppercase}}
+              {{promotion.name | uppercase}}
             </ion-card-title>
             <p>
               {{promotion.description}}
@@ -63,7 +63,7 @@
           <img src="{{BaseURL + leader.image}}" alt="leader.name">
           <ion-card-content>
             <ion-card-title>
-              {{leader.name || uppercase}}
+              {{leader.name | uppercase}}
             </ion-card-title>
             <p>
               {{leader.description}}
