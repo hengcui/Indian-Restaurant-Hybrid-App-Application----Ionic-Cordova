@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ToastController, ActionSheetContro
 import { Dish } from '../../shared/dish';
 import { FavoriteProvider } from '../../providers/favorite/favorite';
 import { CommentPage } from '../../pages/comment/comment';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { baseURL } from '../../shared/baseurl';
 /**
  * Generated class for the DishdetailPage page.
  *
@@ -25,6 +27,7 @@ export class DishdetailPage {
               private toastCtrl : ToastController,
               private actionSheetCtrl : ActionSheetController,
               private modalCtrl : ModalController,
+              private socialSharing : SocialSharing,
               @Inject('BaseURL') public BaseURL) {
                 this.dish = this.navParams.get('dish');
                 this.favorite = this.favoriteService.isFavorite(this.dish.id);
@@ -53,7 +56,11 @@ export class DishdetailPage {
   openComment(){
     let modal = this.modalCtrl.create(CommentPage);
     modal.present();
-    modal.onDidDismiss(data => this.dish.comments.push(data));
+    modal.onDidDismiss(data => {
+      if(data){
+        this.dish.comments.push(data)
+      }
+    });
   }
 
   presentActionSheet(){
@@ -64,10 +71,32 @@ export class DishdetailPage {
           text: 'Add to Favorites',
           handler: () => this.addToFavorites()
         },
+
         {
           text: 'Add Comment',
           handler : () => this.openComment()
         },
+
+        {
+          text: 'Share via Facebook',
+          handler: () => this.socialSharing.shareViaFacebook(
+            this.dish.name + ' -- ' + this.dish.description,
+            this.BaseURL + this.dish.image, 
+            ''
+          ).then(() => console.log('Posted successfully to Facebook'))
+           .catch(() => console.log('Failed to post to Facebook'))
+        },
+
+        {
+          text: 'Share via Twitter',
+          handler: () => this.socialSharing.shareViaTwitter(
+            this.dish.name + ' -- ' + this.dish.description,
+            this.BaseURL + this.dish.image,
+            ''
+          ).then(() => console.log("Posted successfully to Twitter"))
+           .catch(() => console.log("Failed to post to Twitter"))
+        },
+
         {
           text: 'Cancel',
           role: 'cancel'

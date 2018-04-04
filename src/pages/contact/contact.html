@@ -34,17 +34,17 @@
 
     <ion-row>
       <ion-col>
-        <a color="primary" ion-button icon-left clear small href="tel:+812345678">
+        <button color="primary" ion-button icon-left clear small (click)="makeCall()">
           <ion-icon name="call"></ion-icon>
           <div> Call</div>
-        </a>
+        </button>
       </ion-col>
 
       <ion-col>
-        <a color="primary" ion-button icon-left clear small href="mailto:confusion@food.net">
+        <button color="primary" ion-button icon-left clear small (click)="sendEmail()">
           <ion-icon name="mail"></ion-icon>
           <div> Email</div>
-        </a>
+        </button>
       </ion-col>
     </ion-row>
   </ion-card>
